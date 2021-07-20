@@ -27,52 +27,50 @@ public class SnakeAndLadderMain {
             }catch ( Exception e){
                 // TODO  - add logger
                 // log invalid number
+                System.out.println("Invalid number of Run " + numberOfRun +  " ,taking default one "+ DEFAULT_RUN);
 
             }
 
         }
 
         // prepare chess board
+        prepareChessBoard(scan);
+        System.out.println("Board is prepared, Let's play !!");
+        play(scan);
+
+
+    }
+
+    public  static void  play(Scanner scan){
+
+    }
+
+    public  static void  prepareChessBoard(Scanner scan){
         System.out.println("Let's Prepare Chess Board");
         SnakeLadder snakeLadder = new SnakeLadder();
 
         while (true){
-            System.out.println("Please press:  \n 1. Add Snake \n 2. Add Ladder \n 3. Done with board preparation ");
+            System.out.println("Please give required input:  \n 1. Add Snake or Ladder \n 2. Done with board preparation");
             int expression = scan.nextInt();
+            if( expression==2){
+                break;
+            }
             switch(expression)
             {
-                // case statements
-                // values must be of same type of expression
                 case 1 :
+                    System.out.println( "Please input start Index");
                     int startIndex = scan.nextInt();
+                    System.out.println( "Please input end Index");
                     int addIndex = scan.nextInt();
                     snakeLadder.addSnakeOrLadder(startIndex,addIndex);
-                    break; // break is optional
-
-                case 2 :
-                    // Statements
-                    break; // break is optional
-
-                // We can have any number of case statements
-                // below is default statement, used when none of the cases is true.
-                // No break is needed in the default case.
+                    break;
                 default :
                     continue;
-                    // Statements
             }
-
         }
-        switch ()
-
-        while(run >0){
-
-
-        }
-
-
-
-
     }
+
+
 
     /*
     2. Write unit tests

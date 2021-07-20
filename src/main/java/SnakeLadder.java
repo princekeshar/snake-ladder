@@ -24,6 +24,7 @@ public class SnakeLadder {
        }
        try{
            this.getBoard()[ startIndex/10][ startIndex%10 ] = endIndex;
+           System.out.println( "Snake or Ladded at index "+ startIndex  +" with value "+endIndex);
            snakeAdded= true;
        } catch ( Exception e){
            snakeAdded= false;
