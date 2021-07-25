@@ -1,3 +1,6 @@
+/**
+ * Game is 10 * 10 board. By default value is zero, if there is positive value, it will up
+ */
 public class SnakeLadder {
 
     /**
@@ -6,16 +9,17 @@ public class SnakeLadder {
      */
     private  int[ ][ ] board = new int [100][100];
 
-
     /**
      * Method accept snake head position and snake tails position.
      * Snake or ladder can't be added on same place or two ladder and snake can't be present at two place.
      *
-     * @param startIndex
+     * @param startIndex : starting point of ladder or snake.
      * @param endIndex
      * @return
      */
     public boolean addSnakeOrLadder(int startIndex, int endIndex){
+
+        startIndex--;
 
        boolean snakeAdded = false;
         if( this.getBoard()[ startIndex/10][ startIndex%10 ]!=0){
@@ -24,7 +28,7 @@ public class SnakeLadder {
        }
        try{
            this.getBoard()[ startIndex/10][ startIndex%10 ] = endIndex;
-           System.out.println( "Snake or Ladded at index "+ startIndex  +" with value "+endIndex);
+           System.out.println( "Snake or Ladder at index "+ startIndex  +" with value "+endIndex);
            snakeAdded= true;
        } catch ( Exception e){
            snakeAdded= false;
