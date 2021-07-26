@@ -43,8 +43,8 @@ public class SnakeAndLadderMain {
      */
     public  static void  play(Scanner scan, int numberOfRun, SnakeLadder snakeLadder, Dice dice){
 
-        int currentLocation = -1;
-        while (numberOfRun >0 || currentLocation <99){
+        int currentLocation = 0;
+        while (numberOfRun >0 || currentLocation <100){
             System.out.println("Game will run "+ numberOfRun +" of times");
             System.out.println("Press any key and enter to roll dice");
             String line = scan.nextLine();
@@ -53,12 +53,12 @@ public class SnakeAndLadderMain {
 
             System.out.println("Previous location is "+ currentLocation  );
 
-            if( currentLocation+value<=99 ){
+            if( currentLocation+value<=100 ){
                 currentLocation +=value;
                 currentLocation = getUpdatedValue(currentLocation, snakeLadder);
             }
 
-            if( currentLocation==99 ){
+            if( currentLocation==100 ){
                 System.out.println( "Congrat's you have won, you have reached 100. Terminating Game");
                 break;
             }
@@ -66,20 +66,21 @@ public class SnakeAndLadderMain {
             System.out.println( "Updated value of nth Run is "+ currentLocation);
             numberOfRun--;
         }
-
         if(numberOfRun==0){
             System.out.println("Number of chances is over");
         }
     }
+
     /**
      * Function to update current location if there is snake or ladder.
      */
     public  static  int getUpdatedValue(int index, SnakeLadder snakeLadder){
-        if ( snakeLadder.getBoard()[index/10][index%10] ==0 || index ==99){
+        if ( snakeLadder.getBoard()[index/10][index%10 - 1] ==0 || index ==100){
             return  index;
         }
-       return getUpdatedValue ( snakeLadder.getBoard()[index/10][index%10] , snakeLadder);
+       return getUpdatedValue ( snakeLadder.getBoard()[index/10][index%10 - 1] , snakeLadder);
     }
+
 
     public  static void  prepareBoard(Scanner scan, SnakeLadder snakeLadder){
         System.out.println("Let's Prepare Snake Board");
