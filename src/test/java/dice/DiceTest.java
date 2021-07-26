@@ -2,7 +2,6 @@ package dice;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DiceTest {
@@ -26,7 +25,6 @@ public class DiceTest {
     public void testCrooked()
     {
         Dice dice = new CrookedDice();
-
         int [ ] ar = new int [10];
         for(int i : ar){
             int value = dice.throwAndGetValue();

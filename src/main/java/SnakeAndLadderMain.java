@@ -35,16 +35,15 @@ public class SnakeAndLadderMain {
     }
 
     /**
-     * Player will win the game if he reaches at 100.
-     * He has to reach 100, he can't move to position 101 i.e. if player is at 99, to win the game he need to get 1.
-     * @param scan
-     * @param numberOfRun
-     * @param snakeLadder
-     * @param dice
+     * Player will win the game if he reaches at 100. In code terms, it will be 99, as player is starting from -1.
+     * @param scan        scan element
+     * @param numberOfRun number of dice will be rolled
+     * @param snakeLadder snake ladder object.
+     * @param dice        type of dice
      */
     public  static void  play(Scanner scan, int numberOfRun, SnakeLadder snakeLadder, Dice dice){
 
-        int currentLocation = 0;
+        int currentLocation = -1;
         while (numberOfRun >0 || currentLocation <99){
             System.out.println("Game will run "+ numberOfRun +" of times");
             System.out.println("Press any key and enter to roll dice");
@@ -54,12 +53,12 @@ public class SnakeAndLadderMain {
 
             System.out.println("Previous location is "+ currentLocation  );
 
-            if( currentLocation+value<99 ){
+            if( currentLocation+value<=99 ){
                 currentLocation +=value;
                 currentLocation = getUpdatedValue(currentLocation, snakeLadder);
             }
 
-            if( currentLocation+value==99 ){
+            if( currentLocation==99 ){
                 System.out.println( "Congrat's you have won, you have reached 100. Terminating Game");
                 break;
             }
@@ -72,14 +71,12 @@ public class SnakeAndLadderMain {
             System.out.println("Number of chances is over");
         }
     }
-
     /**
      * Function to update current location if there is snake or ladder.
      */
-    public  static  int getUpdatedValue(int currentLocation, SnakeLadder snakeLadder){
-        int index = currentLocation -1;
+    public  static  int getUpdatedValue(int index, SnakeLadder snakeLadder){
         if ( snakeLadder.getBoard()[index/10][index%10] ==0 || index ==99){
-            return  currentLocation;
+            return  index;
         }
        return getUpdatedValue ( snakeLadder.getBoard()[index/10][index%10] , snakeLadder);
     }
@@ -107,14 +104,4 @@ public class SnakeAndLadderMain {
         }
     }
 
- /*
-    Story #1: Basic Board
-    On a board (Of size 100), for a dice throw a player should
-    move from initial position by the number on dice throw
-    Make small commits
-2. Write unit tests
-3. Make the game run for 10 turns
-4. Design it for a single player
-5. Push the code to github and share the github repo.
-            6. The problem can be solved in any language. */
 }
