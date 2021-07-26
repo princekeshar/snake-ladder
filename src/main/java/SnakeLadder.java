@@ -22,14 +22,19 @@ public class SnakeLadder {
         validate(startIndex,endIndex);
 
        boolean snakeAdded = false;
-        if( this.getBoard()[ startIndex/10][ startIndex%10 - 1 ]!=0){
+       int row = startIndex/10;
+       int col = startIndex%10 - 1;
+       if(col<0){
+           col = 9;
+       }
+        if( this.getBoard()[ row ][  col ]!=0){
 
             throw  new RuntimeException("Snake or ladder already present at start Index");
        }
        try{
-           this.getBoard()[ startIndex/10][ startIndex%10 - 1 ] = endIndex;
+           this.getBoard()[ row][ col ] = endIndex;
            System.out.println( "Snake or Ladder added index "+ startIndex  +" with value "+ endIndex);
-           System.out.println( " Array Index is " + (startIndex/10) + " col = "+  (startIndex % 10-1) );
+           System.out.println( " Array Index is " + (startIndex/10) + " col = "+  col );
            snakeAdded= true;
        } catch ( Exception e){
            snakeAdded= false;
@@ -50,18 +55,22 @@ public class SnakeLadder {
      * Method accept snake head position and snake tails position.
      * Snake or ladder can't be added on same place or two ladder and snake can't be present at two place.
      *
-     * @param startIndex
-     * @return
      */
     public boolean removeSnakeOrLadder(int startIndex){
 
+        int row = startIndex/10;
+        int col = startIndex%10 - 1;
+        if(col<0){
+            col = 9;
+        }
+
         boolean snakeRemoved= false;
-        if( this.getBoard()[ startIndex/10][ startIndex%10-1 ]==0){
+        if( this.getBoard()[ row ][ col ]==0){
 
             throw  new RuntimeException("Snake or ladder not present");
         }
         try{
-            this.getBoard()[ startIndex/10][ startIndex%10 -1 ] = 0;
+            this.getBoard()[ row ][ col ] = 0;
             snakeRemoved= true;
         } catch ( Exception e){
             snakeRemoved= false;
