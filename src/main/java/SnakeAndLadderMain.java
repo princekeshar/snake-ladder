@@ -13,7 +13,7 @@ public class SnakeAndLadderMain {
         Scanner scan = new Scanner(System.in);
         SnakeLadder snakeLadder = new SnakeLadder();
         // prepare chess board
-        prepareChessBoard(scan,snakeLadder);
+        prepareBoard(scan,snakeLadder);
         // Choose Dice
         Dice dice = chooseDice(scan);
         System.out.println("Board is prepared, Let's play !!");
@@ -45,7 +45,7 @@ public class SnakeAndLadderMain {
     public  static void  play(Scanner scan, int numberOfRun, SnakeLadder snakeLadder, Dice dice){
 
         int currentLocation = 0;
-        while (numberOfRun >0 || currentLocation ==100){
+        while (numberOfRun >0 || currentLocation <99){
             System.out.println("Game will run "+ numberOfRun +" of times");
             System.out.println("Press any key and enter to roll dice");
             String line = scan.nextLine();
@@ -54,13 +54,13 @@ public class SnakeAndLadderMain {
 
             System.out.println("Previous location is "+ currentLocation  );
 
-            if(currentLocation+value<100){
+            if( currentLocation+value<99 ){
                 currentLocation +=value;
                 currentLocation = getUpdatedValue(currentLocation, snakeLadder);
             }
 
-            if(currentLocation+value==100){
-                System.out.println( "Congrat's you have won, you have reached 100");
+            if( currentLocation+value==99 ){
+                System.out.println( "Congrat's you have won, you have reached 100. Terminating Game");
                 break;
             }
 
@@ -84,8 +84,8 @@ public class SnakeAndLadderMain {
        return getUpdatedValue ( snakeLadder.getBoard()[index/10][index%10] , snakeLadder);
     }
 
-    public  static void  prepareChessBoard(Scanner scan, SnakeLadder snakeLadder){
-        System.out.println("Let's Prepare Chess Board");
+    public  static void  prepareBoard(Scanner scan, SnakeLadder snakeLadder){
+        System.out.println("Let's Prepare Snake Board");
         while (true){
             System.out.println("Please give required input:  \n 1. Add Snake or Ladder \n 2. Done with board preparation");
             int expression = scan.nextInt();

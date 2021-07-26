@@ -19,7 +19,9 @@ public class SnakeLadder {
      */
     public boolean addSnakeOrLadder(int startIndex, int endIndex){
 
+        validate(startIndex,endIndex);
         startIndex--;
+        endIndex--;
 
        boolean snakeAdded = false;
         if( this.getBoard()[ startIndex/10][ startIndex%10 ]!=0){
@@ -36,6 +38,13 @@ public class SnakeLadder {
        }
         return  snakeAdded;
 
+    }
+
+    private void validate(int startIndex, int endIndex) {
+
+        if( ! ( startIndex>0 && startIndex <=100 && endIndex>0 && endIndex>=100 )){
+          throw new RuntimeException("Input out side of range startIndex" + startIndex + " endIndex "+endIndex );
+        }
     }
 
     /**
