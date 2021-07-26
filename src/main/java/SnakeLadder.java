@@ -7,30 +7,29 @@ public class SnakeLadder {
      * Represent board, numbering start from 1 to 100.
      * Board contains by default zero value, depends on ladder or snake value of board at any position changes.
      */
-    private  int[ ][ ] board = new int [100][100];
+    private  int[ ][ ] board = new int [10][10];
 
     /**
      * Method accept snake head position and snake tails position.
      * Snake or ladder can't be added on same place or two ladder and snake can't be present at two place.
      *
      * @param startIndex : starting point of ladder or snake.
-     * @param endIndex
+     * @param endIndex  : end point of ladder or snake.
      * @return
      */
     public boolean addSnakeOrLadder(int startIndex, int endIndex){
 
         validate(startIndex,endIndex);
-        startIndex--;
-        endIndex--;
 
        boolean snakeAdded = false;
-        if( this.getBoard()[ startIndex/10][ startIndex%10 ]!=0){
+        if( this.getBoard()[ startIndex/10][ startIndex%10 - 1 ]!=0){
 
             throw  new RuntimeException("Snake or ladder already present at start Index");
        }
        try{
-           this.getBoard()[ startIndex/10][ startIndex%10 ] = endIndex;
-           System.out.println( "Snake or Ladder at index "+ startIndex  +" with value "+endIndex);
+           this.getBoard()[ startIndex/10][ startIndex%10 - 1 ] = endIndex;
+           System.out.println( "Snake or Ladder added index "+ startIndex  +" with value "+ endIndex);
+           System.out.println( " Array Index is " + (startIndex/10) + " col = "+  (startIndex % 10-1) );
            snakeAdded= true;
        } catch ( Exception e){
            snakeAdded= false;
@@ -42,8 +41,8 @@ public class SnakeLadder {
 
     private void validate(int startIndex, int endIndex) {
 
-        if( ! ( startIndex>0 && startIndex <=100 && endIndex>0 && endIndex>=100 )){
-          throw new RuntimeException("Input out side of range startIndex" + startIndex + " endIndex "+endIndex );
+        if( ! ( (startIndex>0 && startIndex <=100) || ( endIndex>0 && endIndex>=100 ) )){
+          throw new RuntimeException("Input out side of range startIndex " + startIndex + " endIndex "+endIndex );
         }
     }
 
@@ -57,12 +56,12 @@ public class SnakeLadder {
     public boolean removeSnakeOrLadder(int startIndex){
 
         boolean snakeRemoved= false;
-        if( this.getBoard()[ startIndex/10][ startIndex%10 ]==0){
+        if( this.getBoard()[ startIndex/10][ startIndex%10-1 ]==0){
 
             throw  new RuntimeException("Snake or ladder not present");
         }
         try{
-            this.getBoard()[ startIndex/10][ startIndex%10 ] = 0;
+            this.getBoard()[ startIndex/10][ startIndex%10 -1 ] = 0;
             snakeRemoved= true;
         } catch ( Exception e){
             snakeRemoved= false;
