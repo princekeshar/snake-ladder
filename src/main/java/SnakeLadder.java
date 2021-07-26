@@ -28,8 +28,8 @@ public class SnakeLadder {
            col = 9;
        }
         if( this.getBoard()[ row ][  col ]!=0){
-
-            throw  new RuntimeException("Snake or ladder already present at start Index");
+            return  false;
+           // throw  new RuntimeException("Snake or ladder already present at start Index");
        }
        try{
            this.getBoard()[ row][ col ] = endIndex;

@@ -53,7 +53,7 @@ public class SnakeAndLadderMain {
 
             System.out.println("Previous location is "+ currentLocation  );
 
-            if( currentLocation+value<=100 ){
+            if( currentLocation+value<100 ){
                 currentLocation +=value;
                 currentLocation = getUpdatedValue(currentLocation, snakeLadder);
             }
@@ -75,10 +75,18 @@ public class SnakeAndLadderMain {
      * Function to update current location if there is snake or ladder.
      */
     public  static  int getUpdatedValue(int index, SnakeLadder snakeLadder){
-        if ( snakeLadder.getBoard()[index/10][index%10 - 1] ==0 || index ==100){
+        int row = index/10 -1;
+        int col = index%10 - 1;
+        if(col<0){
+            col = 9;
+        }
+        if(row<0){
+            row = 0;
+        }
+        if ( snakeLadder.getBoard()[row][col] ==0 || index ==100){
             return  index;
         }
-       return getUpdatedValue ( snakeLadder.getBoard()[index/10][index%10 - 1] , snakeLadder);
+       return getUpdatedValue ( snakeLadder.getBoard()[row][col] , snakeLadder);
     }
 
 
