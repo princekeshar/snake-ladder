@@ -25,7 +25,7 @@ public class SnakeAndLadderMainTest {
 
 
     @Test
-    public   void testNormalDice()
+    public void testNormalDice()
     {
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
